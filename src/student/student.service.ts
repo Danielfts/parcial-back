@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { Repository } from 'typeorm';
@@ -12,27 +12,42 @@ export class StudentService {
     private studentRepository: Repository<Student>,
   ) {}
   // methods
-  crearEstudiante() {}
+  async crearEstudiante(createStudentDto: CreateStudentDto): Promise<Student> {
+    const student = this.studentRepository.create({ ...createStudentDto });
 
-  eliminarEstudiante() {}
-
-  create(createStudentDto: CreateStudentDto) {
-    return 'This action adds a new student';
+    const newStudent = await this.studentRepository.save(student);
+    return newStudent;
   }
 
-  findAll() {
-    return `This action returns all student`;
+  async eliminarEstudiante(id: bigint): Promise<void> {
+    const existingStudent = await this.studentRepository.findOneBy({ id });
+
+    if (existingStudent === null) {
+      throw new NotFoundException();
+    }
+
+    await this.studentRepository.remove(existingStudent);
+
+    return;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} student`;
-  }
+  // create(createStudentDto: CreateStudentDto) {
+  //   return 'This action adds a new student';
+  // }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
-  }
+  // findAll() {
+  //   return `This action returns all student`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} student`;
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} student`;
+  // }
+
+  // update(id: number, updateStudentDto: UpdateStudentDto) {
+  //   return `This action updates a #${id} student`;
+  // }
+
+  // remove(id: number) {
+  //   return `This action removes a #${id} student`;
+  // }
 }

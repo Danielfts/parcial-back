@@ -14,16 +14,21 @@ import { StudentModule } from './student/student.module';
 import { ProjectModule } from './project/project.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { TestModule } from './test/test.module';
+import { Teacher } from './teacher/entities/teacher.entity';
+import { Student } from './student/entities/student.entity';
+import { Test } from './test/entities/test.entity';
+import { Project } from './project/entities/project.entity';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
+
       useFactory: (configService: ConfigService<IConfiguration>) => {
         const db_config: TypeOrmModuleOptions = configService.get('database', {
           infer: true,
         })!;
-        return db_config;
+        return { ...db_config, autoLoadEntities: true };
       },
     }),
     ConfigModule.forRoot({

@@ -24,7 +24,10 @@ export class Project extends BaseTimestampsEntity {
   //relations
 
   // many projects -> one student
-  @ManyToOne(() => Student, (student) => student.projects)
+  @ManyToOne(() => Student, (student) => student.projects, {
+    eager: true,
+    cascade: true,
+  })
   student: Student;
 
   // muchos proy -> un teacher

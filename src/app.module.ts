@@ -14,10 +14,6 @@ import { StudentModule } from './student/student.module';
 import { ProjectModule } from './project/project.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { TestModule } from './test/test.module';
-import { Teacher } from './teacher/entities/teacher.entity';
-import { Student } from './student/entities/student.entity';
-import { Test } from './test/entities/test.entity';
-import { Project } from './project/entities/project.entity';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({

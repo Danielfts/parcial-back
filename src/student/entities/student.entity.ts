@@ -4,7 +4,7 @@ import { Project } from '../../project/entities/project.entity';
 
 @Entity()
 export class Student extends BaseTimestampsEntity {
-  @Column({ type: 'int2' })
+  @Column({ type: 'int4' })
   numeroCedula: number;
   @Column()
   nombre: string;
@@ -12,8 +12,11 @@ export class Student extends BaseTimestampsEntity {
   @Column()
   programa: string;
 
-  @Column()
+  @Column({ type: 'int2' })
   promedio: number;
+
+  @Column({ type: 'int2' })
+  semestre: number;
 
   // Relations
 

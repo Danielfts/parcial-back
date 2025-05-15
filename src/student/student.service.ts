@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { Repository } from 'typeorm';
@@ -14,7 +19,11 @@ export class StudentService {
   // methods
   async crearEstudiante(createStudentDto: CreateStudentDto): Promise<Student> {
     const student = this.studentRepository.create({ ...createStudentDto });
-
+    const validPromedio = student.promedio > 3.2;
+    const validSemestre = student.semestre >= 4;
+    if (!(validPromedio && validSemestre)) {
+      throw new BadRequestException();
+    }
     const newStudent = await this.studentRepository.save(student);
     return newStudent;
   }

@@ -13,6 +13,7 @@ interface IConfiguration {
     password: string;
     database: string;
     synchronize?: boolean;
+    dropSchema?: boolean;
   };
 }
 
@@ -27,6 +28,7 @@ export default (): IConfiguration => ({
     password: process.env.DB_PASSWORD!,
     database: process.env.DB_NAME!,
     synchronize: true,
+    dropSchema: true,
   },
 });
 

@@ -1,9 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTestDto } from './dto/create-test.dto';
 import { UpdateTestDto } from './dto/update-test.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Test } from './entities/test.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TestService {
+  constructor(
+    @InjectRepository(Test)
+    private testRepository: Repository<Test>,
+  ) {}
+
+  //methods
+  crearEvaluacion() {}
+  //
+
   create(createTestDto: CreateTestDto) {
     return 'This action adds a new test';
   }

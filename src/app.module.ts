@@ -10,6 +10,10 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
 import { BonoModule } from './bono/bono.module';
 import { ClaseModule } from './clase/clase.module';
+import { StudentModule } from './student/student.module';
+import { ProjectModule } from './project/project.module';
+import { TeacherModule } from './teacher/teacher.module';
+import { TestModule } from './test/test.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -29,6 +33,10 @@ import { ClaseModule } from './clase/clase.module';
     UsuarioModule,
     BonoModule,
     ClaseModule,
+    StudentModule,
+    ProjectModule,
+    TeacherModule,
+    TestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

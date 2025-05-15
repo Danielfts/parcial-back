@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import BaseTimestampsEntity from '../../shared/entities/base-timestamps';
+import { Student } from '../../student/entities/student.entity';
 
 @Entity()
 export class Project extends BaseTimestampsEntity {
@@ -17,4 +18,10 @@ export class Project extends BaseTimestampsEntity {
   fechaInicio: string;
   @Column()
   fechaFin: string;
+
+  //relations
+
+  // many projects -> one student
+  @ManyToOne(() => Student, (student) => student.projects)
+  student: Student;
 }

@@ -16,8 +16,10 @@ export class TestService {
   async crearEvaluacion(createTestDto: CreateTestDto) {
     const test = this.testRepository.create({ ...createTestDto });
     const validCalificacion = test.calificacion > 0 && test.calificacion < 5;
-    const validEvaluador = true;
-    if (!(validCalificacion && validCalificacion)) {
+    const evaluador = test.evaluador;
+    const mentor = test.project.mentor;
+    const validEvaluador = !(evaluador.id === mentor.id);
+    if (!(validCalificacion && validEvaluador)) {
       throw new BadRequestException();
     }
     const newTest = await this.testRepository.save(test);

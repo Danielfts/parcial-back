@@ -10,10 +10,10 @@ export class Test extends BaseTimestampsEntity {
   calificacion: number;
   // many eval -> un proyect
 
-  @ManyToOne(() => Project, (project) => project.tests)
+  @ManyToOne(() => Project, (project) => project.tests, { eager: true })
   project: Project;
 
   // un profesor -> many tests
   @ManyToOne(() => Teacher, (teacher) => teacher.tests)
-  teacher: Teacher;
+  evaluador: Teacher;
 }

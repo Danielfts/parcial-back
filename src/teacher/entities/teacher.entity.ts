@@ -1,5 +1,7 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import BaseTimestampsEntity from '../../shared/entities/base-timestamps';
+import { Project } from '../../project/entities/project.entity';
+import { Test } from '../../test/entities/test.entity';
 
 @Entity()
 export class Teacher extends BaseTimestampsEntity {
@@ -14,4 +16,14 @@ export class Teacher extends BaseTimestampsEntity {
   extension: number;
   @Column()
   esParEvaluador: boolean;
+
+  //relations
+
+  // un profe -> muchos proyectos
+  @OneToMany(() => Project, (project) => project.teacher)
+  projects: Project[];
+
+  // Un profesor many tests
+  @OneToMany(() => Test, (test) => test.teacher)
+  tests: Test;
 }

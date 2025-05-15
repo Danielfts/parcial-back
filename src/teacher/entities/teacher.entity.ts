@@ -20,8 +20,8 @@ export class Teacher extends BaseTimestampsEntity {
   //relations
 
   // un profe -> muchos proyectos
-  @OneToMany(() => Project, (project) => project.teacher)
-  projects: Project[];
+  @OneToMany(() => Project, (project) => project.mentor)
+  mentorias: Project[];
 
   // Un profesor many tests
   @OneToMany(() => Test, (test) => test.teacher, { cascade: true, eager: true })

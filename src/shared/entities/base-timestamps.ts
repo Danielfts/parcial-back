@@ -5,7 +5,7 @@ import {
 } from 'typeorm';
 
 class BaseTimestampsEntity {
-  @PrimaryGeneratedColumn('identity', { type: 'bigint' })
+  @PrimaryGeneratedColumn({ type: 'integer' })
   id: bigint;
   @CreateDateColumn()
   createdAt: Date;

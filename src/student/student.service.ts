@@ -1,11 +1,9 @@
 import {
   BadRequestException,
-  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
 import { Repository } from 'typeorm';
 import { Student } from './entities/student.entity';
 import { InjectRepository } from '@nestjs/typeorm';

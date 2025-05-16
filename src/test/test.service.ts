@@ -23,15 +23,15 @@ export class TestService {
 
   //methods
   async crearEvaluacion(createTestDto: CreateTestDto) {
-    const { projectId, evaluatorId: evaluadorId, ...data } = createTestDto;
+    const { projectId, evaluatorId, ...data } = createTestDto;
     // find related entities
     const existingProject = await this.projectRepository.findOneBy({
       id: projectId,
     });
 
-    const existingEvaluator = evaluadorId
+    const existingEvaluator = evaluatorId
       ? await this.teacherRepository.findOneBy({
-          id: evaluadorId,
+          id: evaluatorId,
         })
       : null;
 
@@ -41,18 +41,17 @@ export class TestService {
       );
     }
 
-    if (existingEvaluator === null && evaluadorId !== undefined) {
+    if (existingEvaluator === null && evaluatorId !== undefined) {
       throw new NotFoundException(
-        `No se encontró el profesor con id ${evaluadorId}`,
+        `No se encontró el profesor con id ${evaluatorId}`,
       );
     }
     const test = this.testRepository.create({ ...data });
     const validCalificacion = test.calificacion > 0 && test.calificacion < 5;
     const mentor = existingProject.mentor;
-    const validEvaluador = evaluadorId ? evaluadorId !== mentor.id : true;
-    if (!(validCalificacion && validEvaluador)) {
-      throw new BadRequestException();
-    }
+    const validEvaluador = evaluatorId
+      ? BigInt(evaluatorId) !== BigInt(mentor.id)
+      : true;
     if (!validCalificacion) {
       throw new BadRequestException(`La calificación debe estar entre 0 y 5`);
     }
@@ -61,28 +60,13 @@ export class TestService {
         'El evaluador debe ser diferente del mentor',
       );
     }
+    test.evaluador = existingEvaluator;
+    test.project = existingProject;
     const newTest = await this.testRepository.save(test);
-    return newTest;
+    const { evaluador: evaluatorData, ...testDto } = newTest;
+    const evaluatorDto = { ...evaluatorData };
+    delete evaluatorDto?.tests;
+    testDto['evaluador'] = evaluatorDto;
+    return testDto;
   }
-  //
-
-  // create(createTestDto: CreateTestDto) {
-  //   return 'This action adds a new test';
-  // }
-
-  // findAll() {
-  //   return `This action returns all test`;
-  // }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} test`;
-  // }
-
-  // update(id: number, updateTestDto: UpdateTestDto) {
-  //   return `This action updates a #${id} test`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} test`;
-  // }
 }

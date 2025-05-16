@@ -35,6 +35,7 @@ export class Project extends BaseTimestampsEntity {
   @ManyToOne(() => Teacher, (teacher) => teacher.mentorias, {
     eager: true,
     cascade: true,
+    nullable: false,
   })
   mentor: Teacher;
 

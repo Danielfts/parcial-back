@@ -21,8 +21,11 @@ export class StudentService {
     const student = this.studentRepository.create({ ...createStudentDto });
     const validPromedio = student.promedio > 3.2;
     const validSemestre = student.semestre >= 4;
-    if (!(validPromedio && validSemestre)) {
-      throw new BadRequestException();
+    if (! validPromedio ) {
+      throw new BadRequestException("El promedio debe ser mayor a 3.2")
+    }
+    if (! validSemestre) {
+      throw new BadRequestException("El semestre debe ser mayor a 4")
     }
     const newStudent = await this.studentRepository.save(student);
     return newStudent;
@@ -32,31 +35,11 @@ export class StudentService {
     const existingStudent = await this.studentRepository.findOneBy({ id });
 
     if (existingStudent === null) {
-      throw new NotFoundException();
+      throw new NotFoundException(`No se encontro el estudiante con id ${id}`);
     }
 
     await this.studentRepository.remove(existingStudent);
 
     return;
   }
-
-  // create(createStudentDto: CreateStudentDto) {
-  //   return 'This action adds a new student';
-  // }
-
-  // findAll() {
-  //   return `This action returns all student`;
-  // }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} student`;
-  // }
-
-  // update(id: number, updateStudentDto: UpdateStudentDto) {
-  //   return `This action updates a #${id} student`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} student`;
-  // }
 }

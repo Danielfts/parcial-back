@@ -12,7 +12,7 @@ export class Student extends BaseTimestampsEntity {
   @Column()
   programa: string;
 
-  @Column({ type: 'int2' })
+  @Column({ type: 'real' })
   promedio: number;
 
   @Column({ type: 'int2' })

@@ -1,6 +1,6 @@
 import { OmitType } from '@nestjs/mapped-types';
 import { Student } from '../entities/student.entity';
-import { IsInt, IsNotEmpty, IsNumber, IsString, Max } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsString, Max, Min } from 'class-validator';
 
 export class CreateStudentDto extends OmitType(Student, [
   'id',
@@ -20,5 +20,13 @@ export class CreateStudentDto extends OmitType(Student, [
   programa: string;
   @IsNotEmpty()
   @IsNumber()
+  @Max(5)
+  @Min(0)
   promedio: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  @Max(20)
+  @Min(1)
+  semestre: number;
 }

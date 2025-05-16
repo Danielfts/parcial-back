@@ -7,9 +7,6 @@ import configuration, {
   IConfiguration,
 } from './config/configuration';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { UsuarioModule } from './usuario/usuario.module';
-import { BonoModule } from './bono/bono.module';
-import { ClaseModule } from './clase/clase.module';
 import { StudentModule } from './student/student.module';
 import { ProjectModule } from './project/project.module';
 import { TeacherModule } from './teacher/teacher.module';
@@ -31,9 +28,6 @@ import { TestModule } from './test/test.module';
       validationSchema: config_schema,
       load: [configuration],
     }),
-    UsuarioModule,
-    BonoModule,
-    ClaseModule,
     StudentModule,
     ProjectModule,
     TeacherModule,

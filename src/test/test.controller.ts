@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Param } from '@nestjs/common';
+import { Controller, Post, Body, Param } from '@nestjs/common';
 import { TestService } from './test.service';
 import { CreateTestDto } from './dto/create-test.dto';
 import { EvaluatorIdDto } from './dto/evaluator-id.dto';
@@ -16,7 +16,7 @@ export class TestController {
     return this.testService.crearEvaluacion(createTestDto);
   }
 
-  @Patch(':testId/evaluator')
+  @Post(':testId/evaluator')
   asignarEvaluador(
     @Body() evaluatorIdDto: EvaluatorIdDto,
     @Param('testId') testId: string,

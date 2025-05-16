@@ -41,13 +41,13 @@ export class TestService {
       );
     }
 
-    if (existingEvaluator === null && evaluatorId !== undefined) {
+    if (existingEvaluator === null && evaluatorId) {
       throw new NotFoundException(
         `No se encontró el profesor con id ${evaluatorId}`,
       );
     }
     const test = this.testRepository.create({ ...data });
-    const validCalificacion = test.calificacion > 0 && test.calificacion < 5;
+    const validCalificacion = test.calificacion >= 0 && test.calificacion <= 5;
     const mentor = existingProject.mentor;
     const validEvaluador = evaluatorId
       ? BigInt(evaluatorId) !== BigInt(mentor.id)

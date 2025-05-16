@@ -34,16 +34,24 @@ export class TeacherService {
     const teacher = await this.teacherRepository.findOneBy({ id: teacherId });
 
     const test = await this.testRepository.findOneBy({ id: testId });
-    if (teacher === null || test === null) {
-      throw new NotFoundException();
+    if (test === null) {
+      throw new NotFoundException(
+        `No se encontró la evaluación con id ${testId}`,
+      );
+    }
+    if (teacher === null) {
+      throw new NotFoundException(
+        `No se encontró el profesor con id ${teacherId}`,
+      );
     }
 
     const existingTests = teacher.tests;
     if (existingTests.length >= 3) {
-      throw new BadRequestException();
+      throw new BadRequestException(
+        `Un profesor puede tener un máximo de 3 evaluaciones activas`,
+      );
     }
     teacher.tests.push(test);
-    void (await this.teacherRepository.save(test));
-    return;
+    return await this.teacherRepository.save(teacher);
   }
 }

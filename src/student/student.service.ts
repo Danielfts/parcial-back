@@ -21,11 +21,11 @@ export class StudentService {
     const student = this.studentRepository.create({ ...createStudentDto });
     const validPromedio = student.promedio > 3.2;
     const validSemestre = student.semestre >= 4;
-    if (! validPromedio ) {
-      throw new BadRequestException("El promedio debe ser mayor a 3.2")
+    if (!validPromedio) {
+      throw new BadRequestException('El promedio debe ser mayor a 3.2');
     }
-    if (! validSemestre) {
-      throw new BadRequestException("El semestre debe ser mayor a 4")
+    if (!validSemestre) {
+      throw new BadRequestException('El semestre debe ser mayor a 4');
     }
     const newStudent = await this.studentRepository.save(student);
     return newStudent;

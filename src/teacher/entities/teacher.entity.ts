@@ -5,14 +5,13 @@ import { Test } from '../../test/entities/test.entity';
 
 @Entity()
 export class Teacher extends BaseTimestampsEntity {
-  @Column({ type: 'int2' })
+  @Column({ type: 'int4' })
   numeroCedula: number;
   @Column()
   nombre: string;
-
   @Column()
   departamento: string;
-  @Column({ type: 'int2' })
+  @Column({ type: 'int4' })
   extension: number;
   @Column()
   esParEvaluador: boolean;

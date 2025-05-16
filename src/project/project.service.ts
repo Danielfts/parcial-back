@@ -63,18 +63,18 @@ export class ProjectService {
     return newProject;
   }
 
-  async avanzarProyecto(id: bigint) {
+  async avanzarProyecto(id: bigint): Promise<Project> {
     const project = await this.projectRepository.findOneBy({ id });
     if (project === null) {
-      throw new NotFoundException();
-    }
-    if (project.estado >= 4) {
-      throw new BadRequestException();
+      throw new NotFoundException(`No se encontró el proyecto con id ${id}`);
     }
 
     project.estado = project.estado + 1;
-    void (await this.projectRepository.save(project));
-    return;
+    if (project.estado >= 4) {
+      throw new BadRequestException('El estado máximo de un proyecto es 4');
+    }
+
+    return await this.projectRepository.save(project);
   }
 
   async findAllEstudiantes(projectId: bigint): Promise<Student[]> {

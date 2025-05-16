@@ -80,7 +80,9 @@ export class ProjectService {
   async findAllEstudiantes(projectId: bigint): Promise<Student[]> {
     const project = await this.projectRepository.findOneBy({ id: projectId });
     if (project === null) {
-      throw new NotFoundException();
+      throw new NotFoundException(
+        `No se encontró el proyecto con id ${projectId}`,
+      );
     }
     const student: Student = project.student;
     return [student];

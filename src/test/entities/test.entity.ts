@@ -14,6 +14,6 @@ export class Test extends BaseTimestampsEntity {
   project: Project;
 
   // un profesor -> many tests
-  @ManyToOne(() => Teacher, (teacher) => teacher.tests)
-  evaluador: Teacher;
+  @ManyToOne(() => Teacher, (teacher) => teacher.tests, { nullable: true })
+  evaluador: Teacher | null;
 }

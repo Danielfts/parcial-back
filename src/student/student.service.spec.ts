@@ -137,7 +137,38 @@ describe('StudentService', () => {
     }
   });
 
-  it('should delete a student without active projects', () => {
-    expect(true).toBe(true);
+  it('should delete a student without active projects', async () => {
+    const teacher: Partial<Teacher> = {
+      nombre: faker.person.fullName(),
+      departamento: faker.lorem.word(),
+      esParEvaluador: faker.datatype.boolean(),
+      extension: 99999,
+      numeroCedula: 9999999999,
+    };
+    const createdTeacher = await teacherRepository.save(teacher);
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const project: Partial<Project> = {
+      titulo: faker.lorem.word(),
+      estado: 3,
+      fechaInicio: yesterday.toISOString(),
+      fechaFin: yesterday.toISOString(),
+      notaFinal: 4.0,
+      presupuesto: 10,
+      area: faker.lorem.word(),
+      mentor: createdTeacher,
+    };
+    const createdProject = await projectRepository.save(project);
+    const student = studentRepository.create(generateStudent());
+    student.projects = [createdProject];
+    const createdStudent = await studentRepository.save(student);
+    let studentExists = await studentRepository.existsBy({
+      id: createdStudent.id,
+    });
+    expect(studentExists).toBe(true);
+    await service.eliminarEstudiante(createdStudent.id);
+    studentExists = await studentRepository.existsBy({ id: createdStudent.id });
+    expect(studentExists).toBe(false);
   });
 });

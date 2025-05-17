@@ -28,6 +28,7 @@ export class Project extends BaseTimestampsEntity {
     eager: true,
     cascade: ['insert'],
     nullable: true,
+    onDelete: 'SET NULL',
   })
   lider: Student | null;
 

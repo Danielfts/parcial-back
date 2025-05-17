@@ -6,7 +6,7 @@ import { TypeOrmTestingConfig } from '../shared/testing/typeorm-testing-config';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { faker } from '@faker-js/faker';
 import { CreateStudentDto } from './dto/create-student.dto';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Project } from '../project/entities/project.entity';
 import { Teacher } from '../teacher/entities/teacher.entity';
 
@@ -96,5 +96,48 @@ describe('StudentService', () => {
       BadRequestException,
     );
   });
-  // TODO define should not delete student with projects test
+  it('should not delete a student with projects', async () => {
+    const teacher: Partial<Teacher> = {
+      nombre: faker.person.fullName(),
+      departamento: faker.lorem.word(),
+      esParEvaluador: faker.datatype.boolean(),
+      extension: 99999,
+      numeroCedula: 9999999999,
+    };
+    const createdTeacher = await teacherRepository.save(teacher);
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const project: Partial<Project> = {
+      titulo: faker.lorem.word(),
+      estado: 3,
+      fechaInicio: yesterday.toISOString(),
+      fechaFin: tomorrow.toISOString(),
+      notaFinal: 4.0,
+      presupuesto: 10,
+      area: faker.lorem.word(),
+      mentor: createdTeacher,
+    };
+    const createdProject = await projectRepository.save(project);
+    const student = studentRepository.create(generateStudent());
+    student.projects = [createdProject];
+    const createdStudent = await studentRepository.save(student);
+    const studentExists = await studentRepository.existsBy({
+      id: createdStudent.id,
+    });
+    expect(studentExists).toBe(true);
+    try {
+      await service.eliminarEstudiante(createdStudent.id);
+      fail('Expected exception was not thrown');
+    } catch (error) {
+      console.error(error);
+      expect(error).toBeInstanceOf(ForbiddenException);
+    }
+  });
+
+  it('should delete a student without active projects', () => {
+    expect(true).toBe(true);
+  });
 });

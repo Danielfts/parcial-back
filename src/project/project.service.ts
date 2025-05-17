@@ -46,7 +46,7 @@ export class ProjectService {
       });
 
     project.mentor = existingTeacher;
-    project.student = existingStudent;
+    project.lider = existingStudent;
     const validPresupuesto = project.presupuesto > 0;
     const validTitulo = project.titulo.length > 15;
 
@@ -84,7 +84,7 @@ export class ProjectService {
         `No se encontró el proyecto con id ${projectId}`,
       );
     }
-    const student: Student = project.student;
+    const student: Student = project.lider;
     return [student];
   }
 }

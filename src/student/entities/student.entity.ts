@@ -21,6 +21,6 @@ export class Student extends BaseTimestampsEntity {
   // Relations
 
   // un estudiante -> muchos proyectos
-  @OneToMany(() => Project, (project) => project.student)
+  @OneToMany(() => Project, (project) => project.lider)
   projects: Project[];
 }

@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -30,14 +31,29 @@ export class StudentService {
   }
 
   async eliminarEstudiante(id: bigint): Promise<void> {
-    const existingStudent = await this.studentRepository.findOneBy({ id });
-
+    const existingStudent = await this.studentRepository.findOne({
+      where: { id },
+      relations: ['projects'],
+    });
     if (existingStudent === null) {
       throw new NotFoundException(`No se encontro el estudiante con id ${id}`);
     }
+    const projects = existingStudent.projects;
+    const activeProjects = projects.filter((project) => {
+      const today = new Date();
+      const startDate = new Date(project.fechaInicio);
+      const endDate = new Date(project.fechaFin);
+      const active = startDate <= today && today <= endDate;
+      return active;
+    });
+
+    if (activeProjects.length > 0) {
+      throw new ForbiddenException(
+        'No se puede eliminar un estudiante con proyectos activos en el periodo actual',
+      );
+    }
 
     await this.studentRepository.remove(existingStudent);
-
     return;
   }
 }

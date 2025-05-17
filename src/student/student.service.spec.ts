@@ -29,17 +29,37 @@ describe('StudentService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-
-  it('should create a student', async () => {
-    const studentDto: CreateStudentDto = {
+  function generateStudent(): CreateStudentDto {
+    return {
       nombre: faker.person.fullName(),
       numeroCedula: 191359793,
       programa: 'ISIS',
       promedio: 4.5,
       semestre: 9,
     };
+  }
+
+  it('should create a student', async () => {
+    const studentDto: CreateStudentDto = generateStudent();
     const createdStudent = await service.crearEstudiante(studentDto);
     expect(createdStudent).not.toBeNull();
     expect(createdStudent).toBeInstanceOf(Student);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id, createdAt, updatedAt, projects, ...createdData } =
+      createdStudent;
+    expect(createdData).toEqual(studentDto);
+    expect(Number.isInteger(id)).toBe(true);
+  });
+
+  it('should delete a student', async () => {
+    const studentDto: CreateStudentDto = generateStudent();
+    const studentEntity = repository.create(studentDto);
+    const createdStudent = await repository.save(studentEntity);
+    const id = createdStudent.id;
+    let exists = await repository.exists({ where: { id } });
+    expect(exists).toBe(true);
+    await service.eliminarEstudiante(id);
+    exists = await repository.exists({ where: { id } });
+    expect(exists).toBe(false);
   });
 });

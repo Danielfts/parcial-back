@@ -70,7 +70,7 @@ export class ProjectService {
     }
 
     project.estado = project.estado + 1;
-    if (project.estado >= 4) {
+    if (project.estado > 4) {
       throw new BadRequestException('El estado máximo de un proyecto es 4');
     }
 

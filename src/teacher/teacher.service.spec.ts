@@ -57,7 +57,7 @@ describe('TeacherService', () => {
     expect(teacherData).toEqual(teacherDto);
   });
 
-  it('should not create a teacher with a 10 digit extension', async () => {
+  it('should not create a teacher with a 6 digit extension', async () => {
     const teacherDto: CreateTeacherDto = {
       nombre: faker.person.fullName(),
       extension: 999999,
@@ -130,6 +130,74 @@ describe('TeacherService', () => {
       relations: ['evaluador'],
     });
     expect(createdTest.evaluador!.id).toEqual(createdEvaluator.id);
+  });
+
+  it('should not assign a test an evaluator with 3 or more tests', async () => {
+    // Create a student
+    const studentDto: CreateStudentDto = {
+      nombre: faker.person.fullName(),
+      numeroCedula: generateNDigitNumber(10),
+      programa: faker.lorem.word(),
+      promedio: 4.5,
+      semestre: 4,
+    };
+    const studentEntity = studentRepository.create(studentDto);
+    const createdStudent = await studentRepository.save(studentEntity);
+
+    // Create two teachers
+    const generateTeacher = (): CreateTeacherDto => ({
+      nombre: faker.person.fullName(),
+      departamento: faker.lorem.word(),
+      esParEvaluador: faker.datatype.boolean(),
+      extension: generateNDigitNumber(5),
+      numeroCedula: generateNDigitNumber(10),
+    });
+    const mentorDto: CreateTeacherDto = generateTeacher();
+    const mentorEntity = teacherRepository.create(mentorDto);
+    const createdMentor = await teacherRepository.save(mentorEntity);
+    const evaluatorDto: CreateTeacherDto = generateTeacher();
+    const evaluatorEntity = teacherRepository.create(evaluatorDto);
+    const createdEvaluator = await teacherRepository.save(evaluatorEntity);
+    // Create a project
+    const projectEntity: Partial<Project> = {
+      titulo: faker.lorem.word(),
+      estado: faker.number.int(4),
+      fechaInicio: new Date().toISOString(),
+      fechaFin: new Date().toISOString(),
+      notaFinal: faker.number.float(5),
+      presupuesto: faker.number.int(100),
+      area: faker.lorem.word(),
+      lider: createdStudent,
+      mentor: createdMentor,
+    };
+    const createdProject = await projectRepository.save(projectEntity);
+    // Create a test
+    function generateTest(): Partial<TestEntity> {
+      return {
+        evaluador: null,
+        calificacion: faker.number.float(5),
+        project: createdProject,
+      };
+    }
+    const testEntities = Array.from({ length: 3 }, () => generateTest());
+    const createdTestsPromises = testEntities.map((test) =>
+      testRepository.save(test),
+    );
+    const createdTests = await Promise.all(createdTestsPromises);
+    expect(createdTests).toHaveLength(3);
+    // test assign three evaluator
+    const updatedTeacherPromises = createdTests.map((test) =>
+      service.asignarEvaluador(createdEvaluator.id, test.id),
+    );
+    updatedTeacherPromises.forEach((teacher) => {
+      expect(teacher).toBeTruthy();
+    });
+
+    // test assigning a fourth evaluator
+    const lastTest = await testRepository.save(generateTest());
+    await expect(
+      service.asignarEvaluador(createdEvaluator.id, lastTest.id),
+    ).rejects.toThrow(BadRequestException);
   });
 
   function generateNDigitNumber(digits: number): number {

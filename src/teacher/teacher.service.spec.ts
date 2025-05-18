@@ -7,10 +7,17 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { faker } from '@faker-js/faker';
 import { BadRequestException } from '@nestjs/common';
+import { Student } from '../student/entities/student.entity';
+import { Project } from '../project/entities/project.entity';
+import { Test as TestEntity } from '../test/entities/test.entity';
+import { CreateStudentDto } from '../student/dto/create-student.dto';
 
 describe('TeacherService', () => {
   let service: TeacherService;
-  let repository: Repository<Teacher>;
+  let teacherRepository: Repository<Teacher>;
+  let studentRepository: Repository<Student>;
+  let projectRepository: Repository<Project>;
+  let testRepository: Repository<TestEntity>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -19,7 +26,12 @@ describe('TeacherService', () => {
     }).compile();
 
     service = module.get<TeacherService>(TeacherService);
-    repository = module.get<Repository<Teacher>>(getRepositoryToken(Teacher));
+    teacherRepository = module.get<Repository<Teacher>>(
+      getRepositoryToken(Teacher),
+    );
+    studentRepository = module.get(getRepositoryToken(Student));
+    projectRepository = module.get(getRepositoryToken(Project));
+    testRepository = module.get(getRepositoryToken(TestEntity));
   });
 
   it('should be defined', () => {
@@ -35,7 +47,9 @@ describe('TeacherService', () => {
       departamento: faker.lorem.word(),
     };
     const createdTeacher = await service.crearProfesor(teacherDto);
-    const teacherExists = await repository.existsBy({ id: createdTeacher.id });
+    const teacherExists = await teacherRepository.existsBy({
+      id: createdTeacher.id,
+    });
     expect(teacherExists).toBe(true);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, createdAt, updatedAt, mentorias, tests, ...teacherData } =
@@ -58,4 +72,69 @@ describe('TeacherService', () => {
       expect(error).toBeInstanceOf(BadRequestException);
     }
   });
+
+  it('should assign an evaluator to a test', async () => {
+    // Create a student
+    const studentDto: CreateStudentDto = {
+      nombre: faker.person.fullName(),
+      numeroCedula: generateNDigitNumber(10),
+      programa: faker.lorem.word(),
+      promedio: 4.5,
+      semestre: 4,
+    };
+    const studentEntity = studentRepository.create(studentDto);
+    const createdStudent = await studentRepository.save(studentEntity);
+
+    // Create two teachers
+    const generateTeacher = (): CreateTeacherDto => ({
+      nombre: faker.person.fullName(),
+      departamento: faker.lorem.word(),
+      esParEvaluador: faker.datatype.boolean(),
+      extension: generateNDigitNumber(5),
+      numeroCedula: generateNDigitNumber(10),
+    });
+    const mentorDto: CreateTeacherDto = generateTeacher();
+    const mentorEntity = teacherRepository.create(mentorDto);
+    const createdMentor = await teacherRepository.save(mentorEntity);
+    const evaluatorDto: CreateTeacherDto = generateTeacher();
+    const evaluatorEntity = teacherRepository.create(evaluatorDto);
+    const createdEvaluator = await teacherRepository.save(evaluatorEntity);
+    // Create a project
+    const projectEntity: Partial<Project> = {
+      titulo: faker.lorem.word(),
+      estado: faker.number.int(4),
+      fechaInicio: new Date().toISOString(),
+      fechaFin: new Date().toISOString(),
+      notaFinal: faker.number.float(5),
+      presupuesto: faker.number.int(100),
+      area: faker.lorem.word(),
+      lider: createdStudent,
+      mentor: createdMentor,
+    };
+    const createdProject = await projectRepository.save(projectEntity);
+    // Create a test
+    const testEntity: Partial<TestEntity> = {
+      evaluador: null,
+      calificacion: faker.number.float(5),
+      project: createdProject,
+    };
+    let createdTest = await testRepository.save(testEntity);
+    // test assign an evaluator
+    const updatedTeacher = await service.asignarEvaluador(
+      createdEvaluator.id,
+      createdTest.id,
+    );
+    expect(updatedTeacher.tests).toHaveLength(1);
+    createdTest = await testRepository.findOneOrFail({
+      where: { id: createdTest.id },
+      relations: ['evaluador'],
+    });
+    expect(createdTest.evaluador!.id).toEqual(createdEvaluator.id);
+  });
+
+  function generateNDigitNumber(digits: number): number {
+    const min = Math.pow(10, digits - 1);
+    const max = Math.pow(10, digits) - 1;
+    return faker.number.int({ min, max });
+  }
 });

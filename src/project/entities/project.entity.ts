@@ -10,11 +10,11 @@ export class Project extends BaseTimestampsEntity {
   titulo: string;
   @Column()
   area: string;
-  @Column()
+  @Column({ type: 'integer' })
   presupuesto: number;
-  @Column()
+  @Column({ type: 'smallint' })
   notaFinal: number;
-  @Column()
+  @Column({ type: 'smallint' })
   estado: number;
   @Column()
   fechaInicio: string;

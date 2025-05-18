@@ -8,6 +8,7 @@ import { Student } from '../student/entities/student.entity';
 import { Teacher } from '../teacher/entities/teacher.entity';
 import { faker } from '@faker-js/faker/.';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { BadRequestException } from '@nestjs/common';
 
 describe('ProjectService', () => {
   let service: ProjectService;
@@ -72,7 +73,25 @@ describe('ProjectService', () => {
     }).toEqual(projectDto);
   });
   // Create project: negative tests
-  it('should not create a project with a negative budget', () => {});
+  it('should not create a project with a negative budget', async () => {
+    const { student, teacher } = await seedDatabase();
+    const projectDto: CreateProjectDto = {
+      ...generateProject(),
+      mentorId: teacher.id,
+      studentId: student.id,
+      presupuesto: faker.number.int({ min: -100, max: 0 }),
+    };
+    try {
+      await service.crearProyecto(projectDto);
+      fail('The expected error was not thrown');
+    } catch (error) {
+      expect(error).toBeInstanceOf(BadRequestException);
+      if (error instanceof BadRequestException) {
+        const message = error.message;
+        expect(message).toEqual('El prespuesto debe ser mayor a 0');
+      }
+    }
+  });
 
   it('should not create a project with a title with length <= 15', () => {});
   // Advance project: positive tests

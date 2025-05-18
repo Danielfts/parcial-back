@@ -84,7 +84,10 @@ export class ProjectService {
         `No se encontró el proyecto con id ${projectId}`,
       );
     }
-    const student: Student = project.lider;
+    const student: Student | null = project.lider;
+    if (student === null) {
+      return [];
+    }
     return [student];
   }
 }

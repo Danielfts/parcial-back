@@ -8,7 +8,7 @@ import { Student } from '../student/entities/student.entity';
 import { Teacher } from '../teacher/entities/teacher.entity';
 import { faker } from '@faker-js/faker/.';
 import { CreateProjectDto } from './dto/create-project.dto';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('ProjectService', () => {
   let service: ProjectService;
@@ -93,16 +93,99 @@ describe('ProjectService', () => {
     }
   });
 
-  it('should not create a project with a title with length <= 15', () => {});
+  it('should not create a project with a title with length <= 15', async () => {
+    const { student, teacher } = await seedDatabase();
+    const projectDto: CreateProjectDto = {
+      ...generateProject(),
+      mentorId: teacher.id,
+      studentId: student.id,
+      titulo: 'titulo corto',
+    };
+    try {
+      await service.crearProyecto(projectDto);
+      fail('The expected error was not thrown');
+    } catch (error) {
+      expect(error).toBeInstanceOf(BadRequestException);
+      if (error instanceof BadRequestException) {
+        const message = error.message;
+        expect(message).toEqual('La longitud del título debe ser mayor a 15');
+      }
+    }
+  });
   // Advance project: positive tests
   // state: integer between 0 and 4
-  it('should advance a project', () => {});
+  it('should advance a project', async () => {
+    const { student, teacher } = await seedDatabase();
+    const projectEntity: Project = projectRepository.create({
+      ...generateProject(),
+      lider: student,
+      mentor: teacher,
+    });
+    const project = await projectRepository.save(projectEntity);
+    for (let i: number = 0; i <= 4; i++) {
+      const savedProject = await projectRepository.findOneOrFail({
+        where: { id: project.id },
+      });
+      expect(savedProject.estado).toBe(i);
+      if (i === 4) break;
+      await service.avanzarProyecto(project.id);
+    }
+  });
   // Advance project: negative tests
-  it('should not advance a project to a value beyond 4', () => {});
+  it('should not advance a project to a value beyond 4', async () => {
+    const { student, teacher } = await seedDatabase();
+    const projectEntity: Project = projectRepository.create({
+      ...generateProject(),
+      lider: student,
+      mentor: teacher,
+      estado: 4,
+    });
+    const project = await projectRepository.save(projectEntity);
+    const savedProject = await projectRepository.findOneOrFail({
+      where: { id: project.id },
+    });
+    expect(savedProject.estado).toBe(4);
+    try {
+      await service.avanzarProyecto(project.id);
+      fail('The expected error was not thrown');
+    } catch (error) {
+      expect(error).toBeInstanceOf(BadRequestException);
+      if (error instanceof BadRequestException) {
+        expect(error.message).toEqual('El estado máximo de un proyecto es 4');
+      }
+    }
+  });
   // Find all estudiantes: positive tests
-  it('should find all students that work on a project', () => {});
+  it('should find all students that work on a project', async () => {
+    const { student, teacher } = await seedDatabase();
+    const projectEntity: Project = projectRepository.create({
+      ...generateProject(),
+      lider: student,
+      mentor: teacher,
+      estado: 4,
+    });
+    const project = await projectRepository.save(projectEntity);
+    const students = await service.findAllEstudiantes(project.id);
+    expect(Array.isArray(students)).toBe(true);
+    expect(students).toHaveLength(1);
+    expect(students.at(0)!.id).toEqual(student.id);
+  });
   // Find all estudiantes: negative tests
-  it('should not find students for a non existing project', () => {});
+  it('should not find students for a non existing project', async () => {
+    await seedDatabase();
+    const projectId = 1;
+    try {
+      await service.findAllEstudiantes(BigInt(projectId));
+      fail('The expected error was not thrown');
+    } catch (error) {
+      expect(error).toBeInstanceOf(NotFoundException);
+      if (error instanceof NotFoundException) {
+        expect(error.message).toEqual(
+          `No se encontró el proyecto con id ${projectId}`,
+        );
+      }
+    }
+  });
 
   // helper functions
   function generateNDigitNumber(digits: number): number {

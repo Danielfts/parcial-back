@@ -38,7 +38,7 @@ describe('TeacherService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should cretate a teacher', async () => {
+  it('should create a teacher', async () => {
     const teacherDto: CreateTeacherDto = {
       nombre: faker.person.fullName(),
       extension: 99999,

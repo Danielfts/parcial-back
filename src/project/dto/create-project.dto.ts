@@ -15,7 +15,7 @@ export class CreateProjectDto extends OmitType(Project, [
   'id',
   'createdAt',
   'updatedAt',
-  'student',
+  'lider',
   'mentor',
   'tests',
 ]) {

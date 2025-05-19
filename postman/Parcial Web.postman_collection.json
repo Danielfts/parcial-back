@@ -1,1533 +1,1742 @@
 {
-  "info": {
-    "_postman_id": "11cd58db-205f-48da-a9fa-409283b2d866",
-    "name": "Parcial Web",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "44729218"
-  },
-  "item": [
-    {
-      "name": "student",
-      "item": [
-        {
-          "name": "Create student",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.3,\r\n    \"semestre\": 5\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/student",
-              "host": ["{{baseUrl}}"],
-              "path": ["student"]
-            }
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 4.4,\r\n    \"semestre\": 9\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/student",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["student"]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "187"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"bb-KrB0Cnw6Gn4LjNoQsaNkuzaBsCg\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:23:57 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T03:23:57.438Z\",\n    \"updatedAt\": \"2025-05-16T03:23:57.438Z\",\n    \"numeroCedula\": 1001349793,\n    \"nombre\": \"Daniel Triviño\",\n    \"programa\": \"ISIS\",\n    \"promedio\": 4.4,\n    \"semestre\": 9\n}"
-            },
-            {
-              "name": "Invalid data",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"promedio\": -4.4,\r\n    \"semestre\": 40\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/student",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["student"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "185"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"b9-Apf0Imy7XpWwiMyDgVG9yTV0WaA\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:24:23 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": [\n        \"programa must be a string\",\n        \"programa should not be empty\",\n        \"promedio must not be less than 0\",\n        \"semestre must not be greater than 20\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            },
-            {
-              "name": "Invalid semestre",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 4.4,\r\n    \"semestre\": 2\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/student",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["student"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "83"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"53-0uwWYu6lifYuXZEOd4bKTl9klCM\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:26:31 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"El semestre debe ser mayor a 4\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            },
-            {
-              "name": "Invalid promedio",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/student",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["student"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "85"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"55-lft/LqFkTxT+wWOm21p4EdxLvW0\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:27:03 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"El promedio debe ser mayor a 3.2\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            }
-          ]
-        },
-        {
-          "name": "Delete student",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}"
-            },
-            "url": {
-              "raw": "{{baseUrl}}/student/{{studentId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["student", "{{studentId}}"]
-            }
-          },
-          "response": [
-            {
-              "name": "Student not found",
-              "originalRequest": {
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}"
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/student/{{studentId}}",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["student", "{{studentId}}"]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "88"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"58-eCyzy+jLLJaWiIAPS8vX9IxPK9c\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:28:32 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"No se encontro el estudiante con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-            },
-            {
-              "name": "Sucess",
-              "originalRequest": {
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}"
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/student/{{studentId}}",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["student", "{{studentId}}"]
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "_postman_previewlanguage": "plain",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:32:37 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "tests",
-      "item": [
-        {
-          "name": "Create test",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"calificacion\": 5,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/test",
-              "host": ["{{baseUrl}}"],
-              "path": ["test"]
-            }
-          },
-          "response": [
-            {
-              "name": "Same evaluator and mentor",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"calificacion\": 4.3,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "95"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"5f-bbJs4lCcBx4MlCRy7PbWTijWLHo\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:47:12 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"El evaluador debe ser diferente del mentor\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            },
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"calificacion\": 4.3,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test"]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "997"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"3e5-A9vZH5EBdwlD2IcKLnJhsdcrQ2w\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:47:47 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T06:47:47.743Z\",\n    \"updatedAt\": \"2025-05-16T06:47:47.743Z\",\n    \"calificacion\": 4.3,\n    \"project\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:47:04.841Z\",\n        \"updatedAt\": \"2025-05-16T06:47:04.841Z\",\n        \"titulo\": \"Este es un título largo Shoes\",\n        \"area\": \"deposit\",\n        \"presupuesto\": 10,\n        \"notaFinal\": 0,\n        \"estado\": 1,\n        \"fechaInicio\": \"2024-01-01\",\n        \"fechaFin\": \"2026-01-01\",\n        \"student\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:46:58.066Z\",\n            \"updatedAt\": \"2025-05-16T06:46:58.066Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Daniel Triviño\",\n            \"programa\": \"ISIS\",\n            \"promedio\": 3.3,\n            \"semestre\": 5\n        },\n        \"mentor\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:47:00.458Z\",\n            \"updatedAt\": \"2025-05-16T06:47:00.458Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Profesor Filiberto\",\n            \"departamento\": \"DISC\",\n            \"extension\": 99999,\n            \"esParEvaluador\": true,\n            \"tests\": []\n        }\n    },\n    \"evaluador\": {\n        \"id\": \"2\",\n        \"createdAt\": \"2025-05-16T06:47:01.801Z\",\n        \"updatedAt\": \"2025-05-16T06:47:01.801Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Profesor Rose\",\n        \"departamento\": \"DISC\",\n        \"extension\": 99999,\n        \"esParEvaluador\": true\n    }\n}"
-            },
-            {
-              "name": "Invalid calificación",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"calificacion\": 5.1,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "92"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"5c-1suOUWGrO50BzA5IqXw5SmKx/QY\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:48:39 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"La calificación debe estar entre 0 y 5\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            },
-            {
-              "name": "Project not found",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"calificacion\": 5.1,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test"]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "87"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"57-KbE1u/E7+p+MtTsbN6FI6cT6q9Y\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:49:07 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"No se encontró el proyecto con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-            },
-            {
-              "name": "Teacher not found",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"calificacion\": 5.1,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test"]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "87"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"57-7YHvhCJfsaLLVJqlQMkiCbzBa3c\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:49:26 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"No se encontró el profesor con id 3\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-            },
-            {
-              "name": "Create test without evaluator",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"calificacion\": 5,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": null\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test"]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "796"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"31c-jp0YK0HiuW3VfbFgRoXMWosm6Rg\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:56:26 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"id\": \"2\",\n    \"createdAt\": \"2025-05-16T06:56:26.480Z\",\n    \"updatedAt\": \"2025-05-16T06:56:26.480Z\",\n    \"calificacion\": 5,\n    \"project\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:47:04.841Z\",\n        \"updatedAt\": \"2025-05-16T06:47:04.841Z\",\n        \"titulo\": \"Este es un título largo Shoes\",\n        \"area\": \"deposit\",\n        \"presupuesto\": 10,\n        \"notaFinal\": 0,\n        \"estado\": 1,\n        \"fechaInicio\": \"2024-01-01\",\n        \"fechaFin\": \"2026-01-01\",\n        \"student\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:46:58.066Z\",\n            \"updatedAt\": \"2025-05-16T06:46:58.066Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Daniel Triviño\",\n            \"programa\": \"ISIS\",\n            \"promedio\": 3.3,\n            \"semestre\": 5\n        },\n        \"mentor\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:47:00.458Z\",\n            \"updatedAt\": \"2025-05-16T06:47:00.458Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Profesor Filiberto\",\n            \"departamento\": \"DISC\",\n            \"extension\": 99999,\n            \"esParEvaluador\": true,\n            \"tests\": []\n        }\n    },\n    \"evaluador\": {}\n}"
-            }
-          ]
-        },
-        {
-          "name": "Assign evaluator",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"evaluatorId\": {{teacherId}}\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/test/{{testId}}/evaluator",
-              "host": ["{{baseUrl}}"],
-              "path": ["test", "{{testId}}", "evaluator"]
-            }
-          },
-          "response": [
-            {
-              "name": "Max test violation",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"evaluatorId\": {{teacherId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test/{{testId}}/evaluator",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test", "{{testId}}", "evaluator"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "113"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"71-4gd4uCxMyAvbYbpgi5TEGTgKcIE\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 07:04:25 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"Un profesor puede tener un máximo de 3 evaluaciones activas\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            },
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"evaluatorId\": {{teacherId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/test/{{testId}}/evaluator",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["test", "{{testId}}", "evaluator"]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "531"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"213-TcFw4iya7dfNm+dVvbO2MZwa+uc\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 07:05:24 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"id\": \"4\",\n    \"createdAt\": \"2025-05-16T07:04:48.088Z\",\n    \"updatedAt\": \"2025-05-16T07:04:48.088Z\",\n    \"numeroCedula\": 1001349793,\n    \"nombre\": \"Profesor Opal\",\n    \"departamento\": \"DISC\",\n    \"extension\": 99999,\n    \"esParEvaluador\": true,\n    \"tests\": [\n        {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:47:47.743Z\",\n            \"updatedAt\": \"2025-05-16T07:05:05.176Z\",\n            \"calificacion\": 4.3\n        },\n        {\n            \"id\": \"2\",\n            \"createdAt\": \"2025-05-16T06:56:26.480Z\",\n            \"updatedAt\": \"2025-05-16T07:05:12.302Z\",\n            \"calificacion\": 5\n        },\n        {\n            \"id\": \"3\",\n            \"createdAt\": \"2025-05-16T06:58:01.350Z\",\n            \"updatedAt\": \"2025-05-16T07:05:24.845Z\",\n            \"calificacion\": 5\n        }\n    ]\n}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "teacher",
-      "item": [
-        {
-          "name": "Create teacher",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"nombre\": \"Profesor {{$randomFirstName}}\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": true,\n    \"extension\": 99999,\n    \"numeroCedula\": 1001349793\n\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/teacher",
-              "host": ["{{baseUrl}}"],
-              "path": ["teacher"]
-            }
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"nombre\": \"daniel profesor\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": true,\n    \"extension\": 99999,\n    \"numeroCedula\": 1001349793\n\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/teacher",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["teacher"]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "203"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"cb-zk0TOK1Ol99s6+bVa6ko9AXC74k\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:52:37 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T03:52:37.951Z\",\n    \"updatedAt\": \"2025-05-16T03:52:37.951Z\",\n    \"numeroCedula\": 1001349793,\n    \"nombre\": \"daniel profesor\",\n    \"departamento\": \"DISC\",\n    \"extension\": 99999,\n    \"esParEvaluador\": true\n}"
-            },
-            {
-              "name": "Invalid data",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"nombre\": \"\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": \"true\",\n    \"extension\": 99999,\n    \"numeroCedula\": -1001349793\n\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/teacher",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["teacher"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "161"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"a1-tiyZW0Y1kSLzC/iUGp//tlG5+MQ\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:53:14 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": [\n        \"nombre should not be empty\",\n        \"esParEvaluador must be a boolean value\",\n        \"numeroCedula must not be less than 0\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            },
-            {
-              "name": "Invalid extension",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"nombre\": \"daniel profesor\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": true,\n    \"extension\": 9999999,\n    \"numeroCedula\": 1001349793\n\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/teacher",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["teacher"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "99"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"63-t2HY/0kNH/2snf80Gc+EBTYRZf4\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 03:53:33 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"La extensión debe tener exactamente 5 digitos\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "project",
-      "item": [
-        {
-          "name": "Create project",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/project",
-              "host": ["{{baseUrl}}"],
-              "path": ["project"]
-            }
-          },
-          "response": [
-            {
-              "name": "Business rule violations",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"titulo\": \"{{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": -10,\n    \"mentorId\": {{mentorId}},\n    \"studentIds\": []\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/project",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project"]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "128"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"80-PTv+CRkDXtVdE3/zQbAtaOqg7jo\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 05:31:58 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": [\n        \"El título debe tener mínimo 15 caracteres\",\n        \"El presupuesto mínimo es 0\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
-            },
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/project",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project"]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "665"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"299-bBeYEpBD8eu1Eo2Ha0vXpXlNrII\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 05:59:40 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T05:59:40.387Z\",\n    \"updatedAt\": \"2025-05-16T05:59:40.387Z\",\n    \"titulo\": \"Este es un título largo Global\",\n    \"area\": \"Computers\",\n    \"presupuesto\": 10,\n    \"notaFinal\": 0,\n    \"estado\": 1,\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"student\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T05:59:32.246Z\",\n        \"updatedAt\": \"2025-05-16T05:59:32.246Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Daniel Triviño\",\n        \"programa\": \"ISIS\",\n        \"promedio\": 3.3,\n        \"semestre\": 5\n    },\n    \"mentor\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T05:59:27.312Z\",\n        \"updatedAt\": \"2025-05-16T05:59:27.312Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Profesor Edmund\",\n        \"departamento\": \"DISC\",\n        \"extension\": 99999,\n        \"esParEvaluador\": true,\n        \"tests\": []\n    }\n}"
-            },
-            {
-              "name": "Teacher not found",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/project",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project"]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "87"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"57-1hIijusrZS3nDCzgqpR4gqvPPmg\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:02:44 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"No se encontró el profesor con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-            },
-            {
-              "name": "Student not found",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/project",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project"]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "89"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"59-Dy5vrQAt8oeRcPUhyt2wyoDgCzg\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:03:10 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"No se encontró el estudiante con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-            }
-          ]
-        },
-        {
-          "name": "Find students by project",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/project/{{projectId}}/students",
-              "host": ["{{baseUrl}}"],
-              "path": ["project", "{{projectId}}", "students"]
-            }
-          },
-          "response": [
-            {
-              "name": "Project not found",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/project/{{projectId}}/students",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project", "{{projectId}}", "students"]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "87"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"57-pAcYjGDc5rUdnmx5ymQBZVLbdyE\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:08:40 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"No se encontró el proyecto con id 1\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-            },
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/project/{{projectId}}/students",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project", "{{projectId}}", "students"]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "189"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"bd-ceeIUPhWVuJjm8RoFM4HPISORBQ\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:09:27 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "[\n    {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:09:09.346Z\",\n        \"updatedAt\": \"2025-05-16T06:09:09.346Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Daniel Triviño\",\n        \"programa\": \"ISIS\",\n        \"promedio\": 3.3,\n        \"semestre\": 5\n    }\n]"
-            }
-          ]
-        },
-        {
-          "name": "Advance project",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/project/{{projectId}}/status",
-              "host": ["{{baseUrl}}"],
-              "path": ["project", "{{projectId}}", "status"]
-            }
-          },
-          "response": [
-            {
-              "name": "Project not found",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/project/{{projectId}}/status",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project", "{{projectId}}", "status"]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "87"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"57-pAcYjGDc5rUdnmx5ymQBZVLbdyE\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:16:14 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"message\": \"No se encontró el proyecto con id 1\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-            },
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/project/{{projectId}}/status",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["project", "{{projectId}}", "status"]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "664"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"298-oOUQsoWiUlAePYrITE1TEnCk/xI\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 May 2025 06:16:40 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T06:16:34.761Z\",\n    \"updatedAt\": \"2025-05-16T06:16:40.890Z\",\n    \"titulo\": \"Este es un título largo Saudi\",\n    \"area\": \"productize\",\n    \"presupuesto\": 10,\n    \"notaFinal\": 0,\n    \"estado\": 3,\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"student\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:16:28.285Z\",\n        \"updatedAt\": \"2025-05-16T06:16:28.285Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Daniel Triviño\",\n        \"programa\": \"ISIS\",\n        \"promedio\": 3.3,\n        \"semestre\": 5\n    },\n    \"mentor\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:16:31.917Z\",\n        \"updatedAt\": \"2025-05-16T06:16:31.917Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Profesor Emery\",\n        \"departamento\": \"DISC\",\n        \"extension\": 99999,\n        \"esParEvaluador\": true,\n        \"tests\": []\n    }\n}"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "11cd58db-205f-48da-a9fa-409283b2d866",
+		"name": "Parcial Web",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44729218"
+	},
+	"item": [
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "Create student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.3,\r\n    \"semestre\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/student",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 4.4,\r\n    \"semestre\": 9\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/student",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"student"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-KrB0Cnw6Gn4LjNoQsaNkuzaBsCg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:23:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T03:23:57.438Z\",\n    \"updatedAt\": \"2025-05-16T03:23:57.438Z\",\n    \"numeroCedula\": 1001349793,\n    \"nombre\": \"Daniel Triviño\",\n    \"programa\": \"ISIS\",\n    \"promedio\": 4.4,\n    \"semestre\": 9\n}"
+						},
+						{
+							"name": "Invalid data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"promedio\": -4.4,\r\n    \"semestre\": 40\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/student",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"student"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-Apf0Imy7XpWwiMyDgVG9yTV0WaA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:24:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        \"programa must be a string\",\n        \"programa should not be empty\",\n        \"promedio must not be less than 0\",\n        \"semestre must not be greater than 20\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "Invalid semestre",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 4.4,\r\n    \"semestre\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/student",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"student"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-0uwWYu6lifYuXZEOd4bKTl9klCM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:26:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"El semestre debe ser mayor a 4\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "Invalid promedio",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/student",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"student"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55-lft/LqFkTxT+wWOm21p4EdxLvW0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:27:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"El promedio debe ser mayor a 3.2\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/student/{{studentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"student",
+								"{{studentId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Student not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/student/{{studentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"student",
+										"{{studentId}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-eCyzy+jLLJaWiIAPS8vX9IxPK9c\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:28:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se encontro el estudiante con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Sucess",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/student/{{studentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"student",
+										"{{studentId}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:32:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Delete student with project violation",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\" : \"Daniel Triviño\",\r\n    \"numeroCedula\": 1001349793,\r\n    \"programa\": \"ISIS\",\r\n    \"promedio\": 3.1,\r\n    \"semestre\": 5\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/student/{{studentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"student",
+										"{{studentId}}"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"80-ChV7RHKIIRiTuCSEkDNSdG1JMYU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:23:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se puede eliminar un estudiante con proyectos activos en el periodo actual\",\n    \"error\": \"Forbidden\",\n    \"statusCode\": 403\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "tests",
+			"item": [
+				{
+					"name": "Create test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"calificacion\": 5,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/test",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Same evaluator and mentor",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"calificacion\": 4.3,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-bbJs4lCcBx4MlCRy7PbWTijWLHo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:47:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"El evaluador debe ser diferente del mentor\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"calificacion\": 4.3,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "997"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e5-A9vZH5EBdwlD2IcKLnJhsdcrQ2w\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:47:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T06:47:47.743Z\",\n    \"updatedAt\": \"2025-05-16T06:47:47.743Z\",\n    \"calificacion\": 4.3,\n    \"project\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:47:04.841Z\",\n        \"updatedAt\": \"2025-05-16T06:47:04.841Z\",\n        \"titulo\": \"Este es un título largo Shoes\",\n        \"area\": \"deposit\",\n        \"presupuesto\": 10,\n        \"notaFinal\": 0,\n        \"estado\": 1,\n        \"fechaInicio\": \"2024-01-01\",\n        \"fechaFin\": \"2026-01-01\",\n        \"student\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:46:58.066Z\",\n            \"updatedAt\": \"2025-05-16T06:46:58.066Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Daniel Triviño\",\n            \"programa\": \"ISIS\",\n            \"promedio\": 3.3,\n            \"semestre\": 5\n        },\n        \"mentor\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:47:00.458Z\",\n            \"updatedAt\": \"2025-05-16T06:47:00.458Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Profesor Filiberto\",\n            \"departamento\": \"DISC\",\n            \"extension\": 99999,\n            \"esParEvaluador\": true,\n            \"tests\": []\n        }\n    },\n    \"evaluador\": {\n        \"id\": \"2\",\n        \"createdAt\": \"2025-05-16T06:47:01.801Z\",\n        \"updatedAt\": \"2025-05-16T06:47:01.801Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Profesor Rose\",\n        \"departamento\": \"DISC\",\n        \"extension\": 99999,\n        \"esParEvaluador\": true\n    }\n}"
+						},
+						{
+							"name": "Invalid calificación",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"calificacion\": 5.1,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-1suOUWGrO50BzA5IqXw5SmKx/QY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:48:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"La calificación debe estar entre 0 y 5\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "Project not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"calificacion\": 5.1,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-KbE1u/E7+p+MtTsbN6FI6cT6q9Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:49:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se encontró el proyecto con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Teacher not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"calificacion\": 5.1,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": {{teacherId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-7YHvhCJfsaLLVJqlQMkiCbzBa3c\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:49:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se encontró el profesor con id 3\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Create test without evaluator",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"calificacion\": 5,\n    \"projectId\": {{projectId}},\n    \"evaluatorId\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "796"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31c-jp0YK0HiuW3VfbFgRoXMWosm6Rg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:56:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2\",\n    \"createdAt\": \"2025-05-16T06:56:26.480Z\",\n    \"updatedAt\": \"2025-05-16T06:56:26.480Z\",\n    \"calificacion\": 5,\n    \"project\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:47:04.841Z\",\n        \"updatedAt\": \"2025-05-16T06:47:04.841Z\",\n        \"titulo\": \"Este es un título largo Shoes\",\n        \"area\": \"deposit\",\n        \"presupuesto\": 10,\n        \"notaFinal\": 0,\n        \"estado\": 1,\n        \"fechaInicio\": \"2024-01-01\",\n        \"fechaFin\": \"2026-01-01\",\n        \"student\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:46:58.066Z\",\n            \"updatedAt\": \"2025-05-16T06:46:58.066Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Daniel Triviño\",\n            \"programa\": \"ISIS\",\n            \"promedio\": 3.3,\n            \"semestre\": 5\n        },\n        \"mentor\": {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:47:00.458Z\",\n            \"updatedAt\": \"2025-05-16T06:47:00.458Z\",\n            \"numeroCedula\": 1001349793,\n            \"nombre\": \"Profesor Filiberto\",\n            \"departamento\": \"DISC\",\n            \"extension\": 99999,\n            \"esParEvaluador\": true,\n            \"tests\": []\n        }\n    },\n    \"evaluador\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Assign evaluator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"evaluatorId\": {{teacherId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/test/{{testId}}/evaluator",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"test",
+								"{{testId}}",
+								"evaluator"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Max test violation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"evaluatorId\": {{teacherId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test/{{testId}}/evaluator",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test",
+										"{{testId}}",
+										"evaluator"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-4gd4uCxMyAvbYbpgi5TEGTgKcIE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 07:04:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Un profesor puede tener un máximo de 3 evaluaciones activas\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"evaluatorId\": {{teacherId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test/{{testId}}/evaluator",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test",
+										"{{testId}}",
+										"evaluator"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "531"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"213-TcFw4iya7dfNm+dVvbO2MZwa+uc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 07:05:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"4\",\n    \"createdAt\": \"2025-05-16T07:04:48.088Z\",\n    \"updatedAt\": \"2025-05-16T07:04:48.088Z\",\n    \"numeroCedula\": 1001349793,\n    \"nombre\": \"Profesor Opal\",\n    \"departamento\": \"DISC\",\n    \"extension\": 99999,\n    \"esParEvaluador\": true,\n    \"tests\": [\n        {\n            \"id\": \"1\",\n            \"createdAt\": \"2025-05-16T06:47:47.743Z\",\n            \"updatedAt\": \"2025-05-16T07:05:05.176Z\",\n            \"calificacion\": 4.3\n        },\n        {\n            \"id\": \"2\",\n            \"createdAt\": \"2025-05-16T06:56:26.480Z\",\n            \"updatedAt\": \"2025-05-16T07:05:12.302Z\",\n            \"calificacion\": 5\n        },\n        {\n            \"id\": \"3\",\n            \"createdAt\": \"2025-05-16T06:58:01.350Z\",\n            \"updatedAt\": \"2025-05-16T07:05:24.845Z\",\n            \"calificacion\": 5\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "teacher",
+			"item": [
+				{
+					"name": "Create teacher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Profesor {{$randomFirstName}}\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": true,\n    \"extension\": 99999,\n    \"numeroCedula\": 1001349793\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teacher",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teacher"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"daniel profesor\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": true,\n    \"extension\": 99999,\n    \"numeroCedula\": 1001349793\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/teacher",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teacher"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "203"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cb-zk0TOK1Ol99s6+bVa6ko9AXC74k\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:52:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T03:52:37.951Z\",\n    \"updatedAt\": \"2025-05-16T03:52:37.951Z\",\n    \"numeroCedula\": 1001349793,\n    \"nombre\": \"daniel profesor\",\n    \"departamento\": \"DISC\",\n    \"extension\": 99999,\n    \"esParEvaluador\": true\n}"
+						},
+						{
+							"name": "Invalid data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": \"true\",\n    \"extension\": 99999,\n    \"numeroCedula\": -1001349793\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/teacher",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teacher"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "161"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a1-tiyZW0Y1kSLzC/iUGp//tlG5+MQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:53:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        \"nombre should not be empty\",\n        \"esParEvaluador must be a boolean value\",\n        \"numeroCedula must not be less than 0\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "Invalid extension",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"daniel profesor\",\n    \"departamento\": \"DISC\",\n    \"esParEvaluador\": true,\n    \"extension\": 9999999,\n    \"numeroCedula\": 1001349793\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/teacher",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teacher"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-t2HY/0kNH/2snf80Gc+EBTYRZf4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 03:53:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"La extensión debe tener exactamente 5 digitos\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "project",
+			"item": [
+				{
+					"name": "Create project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/project",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"project"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Business rule violations",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"{{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": -10,\n    \"mentorId\": {{mentorId}},\n    \"studentIds\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/project",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"80-PTv+CRkDXtVdE3/zQbAtaOqg7jo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 05:31:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        \"El título debe tener mínimo 15 caracteres\",\n        \"El presupuesto mínimo es 0\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/project",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "665"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"299-bBeYEpBD8eu1Eo2Ha0vXpXlNrII\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 05:59:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T05:59:40.387Z\",\n    \"updatedAt\": \"2025-05-16T05:59:40.387Z\",\n    \"titulo\": \"Este es un título largo Global\",\n    \"area\": \"Computers\",\n    \"presupuesto\": 10,\n    \"notaFinal\": 0,\n    \"estado\": 1,\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"student\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T05:59:32.246Z\",\n        \"updatedAt\": \"2025-05-16T05:59:32.246Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Daniel Triviño\",\n        \"programa\": \"ISIS\",\n        \"promedio\": 3.3,\n        \"semestre\": 5\n    },\n    \"mentor\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T05:59:27.312Z\",\n        \"updatedAt\": \"2025-05-16T05:59:27.312Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Profesor Edmund\",\n        \"departamento\": \"DISC\",\n        \"extension\": 99999,\n        \"esParEvaluador\": true,\n        \"tests\": []\n    }\n}"
+						},
+						{
+							"name": "Teacher not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/project",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-1hIijusrZS3nDCzgqpR4gqvPPmg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:02:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se encontró el profesor con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Student not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Este es un título largo {{$randomWord}}\",\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"area\": \"{{$randomWord}}\",\n    \"estado\": 1,\n    \"notaFinal\": 0,\n    \"presupuesto\": 10,\n    \"mentorId\": {{mentorId}},\n    \"studentId\": {{studentId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/project",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-Dy5vrQAt8oeRcPUhyt2wyoDgCzg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:03:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se encontró el estudiante con id 2\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						}
+					]
+				},
+				{
+					"name": "Find students by project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/project/{{projectId}}/students",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"project",
+								"{{projectId}}",
+								"students"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Project not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/project/{{projectId}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project",
+										"{{projectId}}",
+										"students"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-pAcYjGDc5rUdnmx5ymQBZVLbdyE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:08:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se encontró el proyecto con id 1\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/project/{{projectId}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project",
+										"{{projectId}}",
+										"students"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "189"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bd-ceeIUPhWVuJjm8RoFM4HPISORBQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:09:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:09:09.346Z\",\n        \"updatedAt\": \"2025-05-16T06:09:09.346Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Daniel Triviño\",\n        \"programa\": \"ISIS\",\n        \"promedio\": 3.3,\n        \"semestre\": 5\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Advance project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/project/{{projectId}}/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"project",
+								"{{projectId}}",
+								"status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Project not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/project/{{projectId}}/status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project",
+										"{{projectId}}",
+										"status"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-pAcYjGDc5rUdnmx5ymQBZVLbdyE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:16:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No se encontró el proyecto con id 1\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/project/{{projectId}}/status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"project",
+										"{{projectId}}",
+										"status"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "664"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"298-oOUQsoWiUlAePYrITE1TEnCk/xI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 06:16:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"createdAt\": \"2025-05-16T06:16:34.761Z\",\n    \"updatedAt\": \"2025-05-16T06:16:40.890Z\",\n    \"titulo\": \"Este es un título largo Saudi\",\n    \"area\": \"productize\",\n    \"presupuesto\": 10,\n    \"notaFinal\": 0,\n    \"estado\": 3,\n    \"fechaInicio\": \"2024-01-01\",\n    \"fechaFin\": \"2026-01-01\",\n    \"student\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:16:28.285Z\",\n        \"updatedAt\": \"2025-05-16T06:16:28.285Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Daniel Triviño\",\n        \"programa\": \"ISIS\",\n        \"promedio\": 3.3,\n        \"semestre\": 5\n    },\n    \"mentor\": {\n        \"id\": \"1\",\n        \"createdAt\": \"2025-05-16T06:16:31.917Z\",\n        \"updatedAt\": \"2025-05-16T06:16:31.917Z\",\n        \"numeroCedula\": 1001349793,\n        \"nombre\": \"Profesor Emery\",\n        \"departamento\": \"DISC\",\n        \"extension\": 99999,\n        \"esParEvaluador\": true,\n        \"tests\": []\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
 }
